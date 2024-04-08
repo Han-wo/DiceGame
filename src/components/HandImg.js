@@ -9,9 +9,14 @@ const IMAGES = {
   paper: paperImg,
 };
 
-const HandIcon = ({ className, value }) => {
+const HandImg = ({ className, value }) => {
   const src = IMAGES[value];
-  return <img className={className} src={src} alt={value} />;
+  return <IconImg className={className} src={src} alt={value} />;
 };
-
-export default HandIcon;
+const IconImg = styled.img`
+  opacity: 0.87;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`;
+export default HandImg;

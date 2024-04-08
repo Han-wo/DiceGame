@@ -1,18 +1,21 @@
-import ResetIcon from "../assets/ic-reset.svg";
+import RestImg from "../assets/ic-reset.svg";
+import styled from "styled-components";
 
 const Button = ({ onClick }) => {
   return (
-    <button className="resetButton" onClick={onClick} style={resetButton}>
-      <img src={ResetIcon} alt="리셋버튼"></img>
-    </button>
+    <ResetButton onClick={onClick}>
+      <img src={RestImg} alt="리셋버튼" />
+    </ResetButton>
   );
 };
 
-const resetButton = {
-  position: "absolute",
-  top: "48px",
-  right: "49px",
-  cursor: "pointer",
-};
+const ResetButton = styled.button`
+  position: absolute;
+  top: 48px;
+  right: 49px;
+  cursor: pointer;
+  background: none;
+  border: none;
+`;
 
 export default Button;
