@@ -1,4 +1,3 @@
-// GameResult.js
 import React from "react";
 import { compareHand } from "./utils";
 

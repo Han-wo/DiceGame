@@ -1,3 +1,12 @@
+* {
+  box-sizing: border-box;
+  font-family: "GmarketSansMedium", sans-serif;
+}
+
+body {
+  background-color: #40089a;
+}
+
 @font-face {
   font-style: normal;
   font-weight: normal;

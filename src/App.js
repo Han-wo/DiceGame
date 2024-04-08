@@ -1,15 +1,14 @@
-// App.js
 import HandButton from "./components/HandButton";
 import Button from "./components/Button";
 import HandIcon from "./components/HandIcon";
 import { useState } from "react";
 import { compareHand, generateRandomHand } from "./components/utils";
 import { checkWinner } from "./components/GameResult";
-import "./App.css";
 import ScoreBoard from "./components/ScoreBoard";
 import GameResult from "./components/GameResult";
 import GameHistory from "./components/GameHistory";
 import Bet from "./components/Bet";
+import "./App.css";
 
 function App() {
   const [hand, setHand] = useState("rock");
@@ -46,7 +45,7 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">가위바위보</h1>
-      <Button onClick={handleClearClick} name="처음부터" />
+      <Button onClick={handleClearClick} />
       <ScoreBoard score={score} otherScore={otherScore} />
       <GameResult hand={hand} otherHand={otherHand} />
       <div>

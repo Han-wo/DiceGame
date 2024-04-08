@@ -1,4 +1,3 @@
-// GameHistory.js
 import React from "react";
 
 const GameHistory = ({ gameHistory }) => {

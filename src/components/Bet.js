@@ -1,4 +1,3 @@
-// BetInput.js
 import React from "react";
 
 const BetInput = ({ bet, onBetChange }) => {
