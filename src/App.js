@@ -1,14 +1,15 @@
+// App.js
 import HandButton from "./components/HandButton";
 import Button from "./components/Button";
 import HandIcon from "./components/HandIcon";
 import { useState } from "react";
 import { compareHand, generateRandomHand } from "./components/utils";
+import { checkWinner } from "./components/GameResult";
 import "./App.css";
-
-const checkWinner = (me, other) => {
-  const gameWinner = compareHand(me, other);
-  return gameWinner > 0 ? "승리" : gameWinner < 0 ? "패배" : "무승부";
-};
+import ScoreBoard from "./components/ScoreBoard";
+import GameResult from "./components/GameResult";
+import GameHistory from "./components/GameHistory";
+import Bet from "./components/Bet";
 
 function App() {
   const [hand, setHand] = useState("rock");
@@ -20,11 +21,10 @@ function App() {
 
   const handleButtonClick = (nextHand) => {
     const nextOtherHand = generateRandomHand();
-    const nextHistoryItem = checkWinner(nextHand, nextOtherHand);
     const gameWinner = compareHand(nextHand, nextOtherHand);
     setHand(nextHand);
     setOtherHand(nextOtherHand);
-    setGameHistory([...gameHistory, nextHistoryItem]);
+    setGameHistory([...gameHistory, checkWinner(nextHand, nextOtherHand)]);
     if (gameWinner > 0) setScore(score + bet);
     if (gameWinner < 0) setOtherScore(otherScore + bet);
   };
@@ -46,26 +46,14 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">가위바위보</h1>
-      <Button onClick={handleClearClick} name="처음부터"></Button>
+      <Button onClick={handleClearClick} name="처음부터" />
+      <ScoreBoard score={score} otherScore={otherScore} />
+      <GameResult hand={hand} otherHand={otherHand} />
       <div>
-        {score} : {otherScore}
+        <HandIcon value={hand} /> VS <HandIcon value={otherHand} />
       </div>
-      <p>{checkWinner(hand, otherHand)}</p>
-      <div>
-        <HandIcon value={hand} />
-        VS
-        <HandIcon value={otherHand} />
-      </div>
-      <div>
-        <input
-          type="number"
-          value={bet}
-          min={1}
-          max={9}
-          onChange={handleBetChange}
-        ></input>
-      </div>
-      <div>승부기록:{gameHistory.join(", ")} </div>
+      <Bet bet={bet} onBetChange={handleBetChange} />
+      <GameHistory gameHistory={gameHistory} />
       <div>
         <HandButton value="rock" onClick={handleButtonClick} />
         <HandButton value="scissor" onClick={handleButtonClick} />
